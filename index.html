@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>介護支援専門員実務研修受講試験（ケアマネ試験） - 学習システム</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="notification.css">
+    <style>
+        /* Statistics Screen Styles */
+        .statistics-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .statistics-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .statistics-header h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .overall-stats {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .overall-stats h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: transform 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card.stat-good {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #d4edda, #f8f9fa);
+        }
+        
+        .stat-card.stat-warning {
+            border-color: #dc3545;
+            background: linear-gradient(135deg, #f8d7da, #f8f9fa);
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .section-stats {
+            margin-bottom: 30px;
+        }
+        
+        .section-stats h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .section-card {
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .section-header h4 {
+            margin: 0;
+            color: #2c3e50;
+        }
+        
+        .section-accuracy {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .section-accuracy.passed {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .section-accuracy.failed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .section-details {
+            padding: 20px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .section-status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .section-status.passed {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .section-status.failed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .action-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .action-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        
+        .action-btn:hover {
+            background: #0056b3;
+        }
+        
+        .action-btn.primary {
+            background: #28a745;
+        }
+        
+        .action-btn.primary:hover {
+            background: #1e7e34;
+        }
+        
+        .action-btn.secondary {
+            background: #6c757d;
+        }
+        
+        .action-btn.secondary:hover {
+            background: #545b62;
+        }
+        
+        .navigation-section {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .nav-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.2s;
+        }
+        
+        .nav-btn:hover {
+            background: #545b62;
+        }
+        
+        /* Reset Section Styles */
+        .reset-section {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .reset-btn {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+        
+        .reset-btn:hover {
+            background: linear-gradient(135deg, #c82333, #a71e2a);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+        }
+        
+        .reset-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+        }
+        
+        .reset-description {
+            color: #6c757d;
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .navigation-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 介護支援専門員実務研修受講試験（ケアマネ試験）</h1>
+            <p>学習・復習システム</p>
+        </div>
+
+        <div class="main-content">
+            <!-- ローディング画面 -->
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <p>データを読み込んでいます...</p>
+            </div>
+
+            <!-- 年度選択画面 -->
+            <div id="year-selection" class="year-selection" style="display: none;">
+                <!-- app.jsで動的に生成 -->
+            </div>
+
+            <!-- モード選択画面 -->
+            <div id="mode-selection" class="mode-selection">
+                <!-- app.jsで動的に生成 -->
+            </div>
+
+            <!-- 問題画面 -->
+            <div id="question-interface" class="question-interface">
+                <!-- examController.jsで動的に生成 -->
+            </div>
+
+            <!-- 結果画面 -->
+            <div id="results-display" class="results-container">
+                <!-- examManagerWithJudgment.jsで動的に生成 -->
+            </div>
+
+            <!-- 学習統計画面 -->
+            <div id="statistics-display" class="statistics-container" style="display: none;">
+                <!-- app.jsで動的に生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript読み込み -->
+    <script src="notificationSystem.js"></script>
+    <script src="dataLoader.js"></script>
+    <script src="uiRenderer.js"></script>
+    <script src="examManagerWithJudgment.js"></script>
+    <script src="app.js"></script>
+    <script src="examController.js"></script>
+    <script src="choiceController.js"></script>
+    <script src="init.js"></script>
+</body>
+</html>

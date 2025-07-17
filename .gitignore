@@ -1,0 +1,90 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+*.lcov
+.nyc_output
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and Editor files
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+loglevel.json
+
+# Build outputs
+dist/
+build/
+out/
+
+# Cache directories
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Package manager lock files (choose one)
+# package-lock.json
+# yarn.lock
+
+# Local development server
+.serve/
+
+# Backup files
+*.bak
+*.backup
+*.orig
+
+# Test artifacts
+test-results/
+playwright-report/
+test-results.xml
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity

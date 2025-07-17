@@ -1,0 +1,28 @@
+{
+  "name": "keamane-exam-system",
+  "version": "1.0.0",
+  "description": "介護支援専門員試験学習システム",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "serve": "python3 -m http.server 8080",
+    "dev": "live-server --port=8080"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "@testing-library/jest-dom": "^6.1.4",
+    "live-server": "^1.2.2"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"],
+    "testMatch": ["<rootDir>/tests/**/*.test.js"],
+    "collectCoverageFrom": [
+      "*.js",
+      "!node_modules/**",
+      "!tests/**"
+    ]
+  }
+}
