@@ -63,7 +63,6 @@ temp/
 
 # Backup files
 *.bak
-*.backup
 *.orig
 
 # Test artifacts
